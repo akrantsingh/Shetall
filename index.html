@@ -24,7 +24,7 @@ body{
   display:block;
 }
 
-/* Center first slide */
+/* Center content */
 .center{
   display:flex;
   flex-direction:column;
@@ -71,26 +71,20 @@ button{
   font-size:42px;
   color:#ff2e63;
   margin-top:40px;
-  text-align:center;
 }
 .final-photo{
-  display:block;
   width:80%;
   max-width:320px;
-  margin:30px auto;
+  margin-top:30px;
   border-radius:20px;
 }
 
-/* Fireworks canvas */
+/* Fireworks */
 #fireworks{
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:0;
-}
-.final-text,.final-photo{
-  position:relative;
-  z-index:1;
+  display:none;
 }
 </style>
 </head>
@@ -101,7 +95,6 @@ button{
 <div class="slide active center" id="s1">
   <div class="cat">🐱</div>
   <h1>Sheetal, my wifey 💍<br>will you be my Valentine ❤️</h1>
-  <br>
   <button class="yes" onclick="nextSlide()">YES 💖</button>
   <button class="no" id="noBtn">NO ❌</button>
 </div>
@@ -115,11 +108,10 @@ button{
     Aaj Valentine’s Day hai,<br>
     par sach yeh hai ki main aapko har din choose karta hoon ❤️
   </p>
-  <br>
   <button class="yes" onclick="nextSlide()">Next ❤️</button>
 </div>
 
-<!-- SLIDE 3 (PHOTOS – SCROLLS) -->
+<!-- SLIDE 3 (SCROLLING PHOTOS) -->
 <div class="slide photos" id="s3">
   <img src="photo1.jpg">
   <img src="photo2.jpg">
@@ -127,7 +119,6 @@ button{
   <img src="photo4.jpg">
   <img src="photo5.jpg">
   <img src="photo6.jpg">
-  <br>
   <button class="yes" onclick="nextSlide()">Next ❤️</button>
 </div>
 
@@ -138,7 +129,7 @@ button{
   <button class="yes" onclick="nextSlide()">Always ❤️</button>
 </div>
 
-<!-- SLIDE 5 (FINAL FIREWORKS) -->
+<!-- SLIDE 5 (FINAL) -->
 <div class="slide center" id="s5">
   <canvas id="fireworks"></canvas>
   <h1 class="final-text">YOU ARE MINE NOW ❤️</h1>
@@ -152,19 +143,24 @@ button{
 
 <script>
 let current = 1;
+
 function nextSlide(){
   document.getElementById("s"+current).classList.remove("active");
   current++;
   document.getElementById("s"+current).classList.add("active");
   document.getElementById("music").play();
+
+  if(current === 5){
+    startFireworks();
+  }
 }
 
 /* NO button run away */
 const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("mouseover", ()=>{
+noBtn.onmouseover = () => {
   noBtn.style.top = Math.random()*80 + "%";
   noBtn.style.left = Math.random()*80 + "%";
-});
+};
 
 /* FIREWORKS */
 const canvas = document.getElementById("fireworks");
@@ -181,13 +177,13 @@ function firework(){
 
   for(let i=0;i<60;i++){
     let px=x, py=y;
-    const angle = Math.random()*Math.PI*2;
+    let angle=Math.random()*Math.PI*2;
     let vx=Math.cos(angle)*rand(2,6);
     let vy=Math.sin(angle)*rand(2,6);
-    const color=colors[Math.floor(Math.random()*colors.length)];
+    let color=colors[Math.floor(Math.random()*colors.length)];
     let life=60;
 
-    const p=setInterval(()=>{
+    let p=setInterval(()=>{
       ctx.fillStyle=color;
       ctx.fillRect(px,py,2,2);
       px+=vx;
@@ -198,11 +194,16 @@ function firework(){
     },16);
   }
 }
-setInterval(firework,900);
+
+function startFireworks(){
+  canvas.style.display="block";
+  setInterval(firework,900);
+}
 </script>
 
 </body>
 </html>
+
 
 
 
