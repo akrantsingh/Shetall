@@ -12,13 +12,12 @@ background: #fff0f4;
 overflow: hidden;
 color: #333;
 }
-.slide {
-display: none;
-height: 100vh;
-width: 100vw;
-padding: 30px;
-box-sizing: border-box;
-text-align: center;
+.slide{
+  display:none;
+  min-height:100vh;
+  padding:30px;
+  box-sizing:border-box;
+  overflow-y:auto;
 }
 .active { display: block; }
 h1, h2 { font-weight: normal; }
@@ -50,6 +49,39 @@ color: #ff4d6d;
 @keyframes float {
 from { transform: translateY(0); opacity: 1; }
 to { transform: translateY(-100vh); opacity: 0; }
+}
+
+.final-text{
+  font-size:42px;
+  margin-top:40px;
+  color:#ff2e63;
+  animation:pop 1s ease-in-out infinite alternate;
+}
+
+.final-photo{
+  width:80%;
+  max-width:300px;
+  margin-top:30px;
+  border-radius:20px;
+}
+
+@keyframes pop{
+  from{transform:scale(1)}
+  to{transform:scale(1.05)}
+}
+
+.sparkles{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#fff 10%,transparent 11%);
+  background-size:20px 20px;
+  animation:sparkle 1s linear infinite;
+  opacity:0.25;
+}
+
+@keyframes sparkle{
+  from{background-position:0 0}
+  to{background-position:20px 20px}
 }
 </style>
 </head>
@@ -96,7 +128,7 @@ par sach yeh hai ki main aapko har din choose karta hoon ❤️
 <div class="slide" id="s4">
 <h2>Happy Valentine’s Day Sheetal ❤️</h2>
 <p>This website is small, but what I feel for you is not.</p>
-<button class="yes">Always ❤️</button>
+<button class="yes" onclick="next()">Always ❤️</button>
 </div>
 
 <audio id="music" loop>
@@ -129,5 +161,11 @@ setTimeout(() => h.remove(), 6000);
 }, 500);
 </script>
 
+<div class="slide" id="s5">
+  <div class="sparkles"></div>
+  <h1 class="final-text">YOU ARE MINE NOW ❤️</h1>
+  <img src="photo3.jpg" class="final-photo">
+</div>
 </body>
 </html>
+
