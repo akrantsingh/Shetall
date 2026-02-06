@@ -4,81 +4,27 @@
 <meta charset="UTF-8">
 <title>For Sheetal ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body {
-  margin: 0;
-  font-family: Georgia, serif;
-  background: #fff0f4;
-  overflow-y: auto;
-}
-#fireworks{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-}
-.final-text, .final-photo{
-  position:relative;
-  z-index:1;
-}
-  
-.slide{
-  display:none;
-  min-height:100vh;
-  padding:30px;
-  box-sizing:border-box;
+body{
+  margin:0;
+  font-family:Georgia, serif;
+  background:#fff0f4;
   overflow-y:auto;
 }
-.active { display: block; }
-h1, h2 { font-weight: normal; }
-button {
-padding: 14px 28px;
-font-size: 16px;
-border: none;
-border-radius: 30px;
-cursor: pointer;
-}
-.yes { background: #ff4d6d; color: white; }
-.no { background: #ccc; position: absolute; }
-.cat { font-size: 72px; margin-bottom: 10px; }
 
-.photos img {
-width: 80%;
-max-width: 320px;
-margin: 10px 0;
-border-radius: 18px;
+/* Slides */
+.slide{
+  display:none;
+  padding:30px;
+  box-sizing:border-box;
+  min-height:100vh;
+}
+.slide.active{
+  display:block;
 }
 
-.heart {
-position: fixed;
-bottom: -10px;
-font-size: 18px;
-animation: float 6s linear infinite;
-color: #ff4d6d;
-}
-@keyframes float {
-from { transform: translateY(0); opacity: 1; }
-to { transform: translateY(-100vh); opacity: 0; }
-}
-
-.final-text{
-  font-size:42px;
-  margin-top:40px;
-  color:#ff2e63;
-  animation:pop 1s ease-in-out infinite alternate;
-}
-
-.final-photo{
-  width:80%;
-  max-width:300px;
-  margin-top:30px;
-  border-radius:20px;
-}
-
-@keyframes pop{
-  from{transform:scale(1)}
-  to{transform:scale(1.05)}
-}
+/* Center first slide */
 .center{
   display:flex;
   flex-direction:column;
@@ -86,137 +32,178 @@ to { transform: translateY(-100vh); opacity: 0; }
   align-items:center;
   text-align:center;
 }
-.sparkles{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle,#fff 10%,transparent 11%);
-  background-size:20px 20px;
-  animation:sparkle 1s linear infinite;
-  opacity:0.25;
+
+/* Buttons */
+button{
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+}
+.yes{
+  background:#ff4d6d;
+  color:white;
+}
+.no{
+  background:#ccc;
+  position:absolute;
 }
 
-@keyframes sparkle{
-  from{background-position:0 0}
-  to{background-position:20px 20px}
+/* Cat */
+.cat{
+  font-size:72px;
+  margin-bottom:10px;
+}
+
+/* Photos */
+.photos img{
+  display:block;
+  width:80%;
+  max-width:320px;
+  margin:20px auto;
+  border-radius:18px;
+}
+
+/* Final screen */
+.final-text{
+  font-size:42px;
+  color:#ff2e63;
+  margin-top:40px;
+  text-align:center;
+}
+.final-photo{
+  display:block;
+  width:80%;
+  max-width:320px;
+  margin:30px auto;
+  border-radius:20px;
+}
+
+/* Fireworks canvas */
+#fireworks{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.final-text,.final-photo{
+  position:relative;
+  z-index:1;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Slide 1 -->
-<div class="slide active centre" id="s1">
-<div class="cat">🐱</div>
-<h1>Sheetal, my wifey 💍<br>will you be my Valentine ❤️</h1>
-<br>
-<button class="yes" onclick="next()">YES 💖</button>
-<button class="no" id="no">NO ❌</button>
+<!-- SLIDE 1 -->
+<div class="slide active center" id="s1">
+  <div class="cat">🐱</div>
+  <h1>Sheetal, my wifey 💍<br>will you be my Valentine ❤️</h1>
+  <br>
+  <button class="yes" onclick="nextSlide()">YES 💖</button>
+  <button class="no" id="noBtn">NO ❌</button>
 </div>
 
-<!-- Slide 2 -->
+<!-- SLIDE 2 -->
 <div class="slide" id="s2">
-<p>
-Sheetal,<br><br>
-aap meri life ka woh hissa ho jiske baad sab kuch thoda zyada meaningful ho gaya.<br><br>
-Aapke saath waqt sirf guzarta nahi, woh yaadein ban jaata hai.<br><br>
-Aapka support, aapki care, aur bina kuch bole samajh lena,
-yahi sab aapko mere liye sabse special banata hai.<br><br>
-Aaj Valentine’s Day hai,
-par sach yeh hai ki main aapko har din choose karta hoon ❤️
-</p>
-<br>
-<button class="yes" onclick="next()">Next ❤️</button>
+  <p>
+    Sheetal,<br><br>
+    aap meri life ka woh hissa ho jiske baad sab kuch thoda zyada meaningful ho gaya.<br><br>
+    Aapke saath waqt sirf guzarta nahi, woh yaadein ban jaata hai.<br><br>
+    Aaj Valentine’s Day hai,<br>
+    par sach yeh hai ki main aapko har din choose karta hoon ❤️
+  </p>
+  <br>
+  <button class="yes" onclick="nextSlide()">Next ❤️</button>
 </div>
 
-<!-- Slide 3 -->
-<div class="slide photos scroll" id="s3">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo4.jpg">
-<img src="photo5.jpg">
-<img src="photo6.jpg">
-<br><br>
-<button class="yes" onclick="next()">Next ❤️</button>
+<!-- SLIDE 3 (PHOTOS – SCROLLS) -->
+<div class="slide photos" id="s3">
+  <img src="photo1.jpg">
+  <img src="photo2.jpg">
+  <img src="photo3.jpg">
+  <img src="photo4.jpg">
+  <img src="photo5.jpg">
+  <img src="photo6.jpg">
+  <br>
+  <button class="yes" onclick="nextSlide()">Next ❤️</button>
 </div>
 
-<!-- Slide 4 -->
-<div class="slide" id="s4">
-<h2>Happy Valentine’s Day Sheetal ❤️</h2>
-<p>This website is small, but what I feel for you is not.</p>
-<button class="yes" onclick="next()">Always ❤️</button>
+<!-- SLIDE 4 -->
+<div class="slide center" id="s4">
+  <h2>Happy Valentine’s Day Sheetal ❤️</h2>
+  <p>This website is small, but what I feel for you is not.</p>
+  <button class="yes" onclick="nextSlide()">Always ❤️</button>
 </div>
 
+<!-- SLIDE 5 (FINAL FIREWORKS) -->
+<div class="slide center" id="s5">
+  <canvas id="fireworks"></canvas>
+  <h1 class="final-text">YOU ARE MINE NOW ❤️</h1>
+  <img src="photo3.jpg" class="final-photo">
+</div>
+
+<!-- MUSIC -->
 <audio id="music" loop>
-<source src="tum-se-hi.mp3" type="audio/mpeg">
+  <source src="tum-se-hi.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let c = 1;
-function next() {
-document.getElementById("s"+c).classList.remove("active");
-c++;
-document.getElementById("s"+c).classList.add("active");
-document.getElementById("music").play();
+let current = 1;
+function nextSlide(){
+  document.getElementById("s"+current).classList.remove("active");
+  current++;
+  document.getElementById("s"+current).classList.add("active");
+  document.getElementById("music").play();
 }
 
-const no = document.getElementById("no");
-no.addEventListener("mouseover", () => {
-no.style.top = Math.random()*80 + "%";
-no.style.left = Math.random()*80 + "%";
-no.innerText = "Definitely YES 😌";
+/* NO button run away */
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", ()=>{
+  noBtn.style.top = Math.random()*80 + "%";
+  noBtn.style.left = Math.random()*80 + "%";
 });
 
-setInterval(() => {
-const h = document.createElement("div");
-h.className = "heart";
-h.innerHTML = "❤️";
-h.style.left = Math.random()*100 + "vw";
-document.body.appendChild(h);
-setTimeout(() => h.remove(), 6000);
-}, 500);
-  <script>
+/* FIREWORKS */
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-function random(min,max){return Math.random()*(max-min)+min}
+function rand(min,max){return Math.random()*(max-min)+min;}
 
 function firework(){
-  const x = random(100, canvas.width-100);
-  const y = random(50, canvas.height/2);
+  const x = rand(100, canvas.width-100);
+  const y = rand(50, canvas.height/2);
   const colors = ["#ff004c","#ffae00","#00e0ff","#ffffff"];
 
   for(let i=0;i<60;i++){
+    let px=x, py=y;
     const angle = Math.random()*Math.PI*2;
-    const speed = random(2,6);
-    const vx = Math.cos(angle)*speed;
-    const vy = Math.sin(angle)*speed;
-    const color = colors[Math.floor(Math.random()*colors.length)];
+    let vx=Math.cos(angle)*rand(2,6);
+    let vy=Math.sin(angle)*rand(2,6);
+    const color=colors[Math.floor(Math.random()*colors.length)];
+    let life=60;
 
-    let px = x, py = y, life = 60;
-    const interval = setInterval(()=>{
-      ctx.fillStyle = color;
+    const p=setInterval(()=>{
+      ctx.fillStyle=color;
       ctx.fillRect(px,py,2,2);
-      px += vx;
-      py += vy;
-      vy += 0.05;
+      px+=vx;
+      py+=vy;
+      vy+=0.05;
       life--;
-      if(life<=0) clearInterval(interval);
+      if(life<=0) clearInterval(p);
     },16);
   }
 }
+setInterval(firework,900);
+</script>
 
-setInterval(firework, 900);
-</script>
-</script>
-<div class="slide" id="s5">
-  <h1 class="final-text">YOU ARE MINE NOW ❤️</h1>
-  <img src="photo3.jpg" class="final-photo">
-</div>
-  <canvas id="fireworks"></canvas>
 </body>
 </html>
+
 
 
 
