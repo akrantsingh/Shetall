@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Sheetal ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+margin: 0;
+font-family: 'Georgia', serif;
+background: #fff0f4;
+overflow: hidden;
+color: #333;
+}
+.slide {
+display: none;
+height: 100vh;
+width: 100vw;
+padding: 30px;
+box-sizing: border-box;
+text-align: center;
+}
+.active { display: block; }
+h1, h2 { font-weight: normal; }
+button {
+padding: 14px 28px;
+font-size: 16px;
+border: none;
+border-radius: 30px;
+cursor: pointer;
+}
+.yes { background: #ff4d6d; color: white; }
+.no { background: #ccc; position: absolute; }
+.cat { font-size: 72px; margin-bottom: 10px; }
+
+.photos img {
+width: 80%;
+max-width: 320px;
+margin: 10px 0;
+border-radius: 18px;
+}
+
+.heart {
+position: fixed;
+bottom: -10px;
+font-size: 18px;
+animation: float 6s linear infinite;
+color: #ff4d6d;
+}
+@keyframes float {
+from { transform: translateY(0); opacity: 1; }
+to { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Slide 1 -->
+<div class="slide active" id="s1">
+<div class="cat">🐱</div>
+<h1>Sheetal, my wifey 💍<br>will you be my Valentine ❤️</h1>
+<br>
+<button class="yes" onclick="next()">YES 💖</button>
+<button class="no" id="no">NO ❌</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="s2">
+<p>
+Sheetal,<br><br>
+aap meri life ka woh hissa ho jiske baad sab kuch thoda zyada meaningful ho gaya.<br><br>
+Aapke saath waqt sirf guzarta nahi, woh yaadein ban jaata hai.<br><br>
+Aapka support, aapki care, aur bina kuch bole samajh lena,
+yahi sab aapko mere liye sabse special banata hai.<br><br>
+Aaj Valentine’s Day hai,
+par sach yeh hai ki main aapko har din choose karta hoon ❤️
+</p>
+<br>
+<button class="yes" onclick="next()">Next ❤️</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide photos" id="s3">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+<br><br>
+<button class="yes" onclick="next()">Next ❤️</button>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="s4">
+<h2>Happy Valentine’s Day Sheetal ❤️</h2>
+<p>This website is small, but what I feel for you is not.</p>
+<button class="yes">Always ❤️</button>
+</div>
+
+<audio id="music" loop>
+<source src="tum-se-hi.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let c = 1;
+function next() {
+document.getElementById("s"+c).classList.remove("active");
+c++;
+document.getElementById("s"+c).classList.add("active");
+document.getElementById("music").play();
+}
+
+const no = document.getElementById("no");
+no.addEventListener("mouseover", () => {
+no.style.top = Math.random()*80 + "%";
+no.style.left = Math.random()*80 + "%";
+no.innerText = "Definitely YES 😌";
+});
+
+setInterval(() => {
+const h = document.createElement("div");
+h.className = "heart";
+h.innerHTML = "❤️";
+h.style.left = Math.random()*100 + "vw";
+document.body.appendChild(h);
+setTimeout(() => h.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
