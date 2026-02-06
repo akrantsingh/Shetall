@@ -16,20 +16,26 @@ html,body{
   background:#fff0f4;
 }
 
-/* SLIDES */
+/* SLIDER */
+#slider{
+  display:flex;
+  width:500vw;
+  height:100vh;
+  transition:transform 0.5s ease;
+}
+
+/* SLIDE */
 .slide{
-  position:absolute;
-  inset:0;
-  display:none;
+  width:100vw;
+  height:100vh;
   padding:30px;
   box-sizing:border-box;
-}
-.slide.active{
-  display:flex;
+  flex-shrink:0;
 }
 
 /* CENTER */
 .center{
+  display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
@@ -43,32 +49,22 @@ button{
   border-radius:30px;
   font-size:16px;
   margin:12px;
-  cursor:pointer;
 }
-.yes{
-  background:#ff4d6d;
-  color:white;
-}
-.no{
-  background:#ddd;
-  position:relative;
-}
+.yes{background:#ff4d6d;color:white;}
+.no{background:#ddd;position:relative;}
 
 /* CAT */
-.cat{
-  font-size:70px;
-}
+.cat{font-size:70px;}
 
-/* PHOTO SLIDE */
+/* PHOTOS */
 .photos{
-  display:flex;
-  flex-direction:column;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
 }
 .photos img{
   width:85%;
   max-width:320px;
+  display:block;
   margin:20px auto;
   border-radius:18px;
 }
@@ -92,49 +88,52 @@ button{
 
 <body>
 
+<div id="slider">
+
 <!-- SLIDE 1 -->
-<div class="slide active center" id="slide1">
+<div class="slide center">
   <div class="cat">🐱</div>
   <h1>Sheetal, my wifey 💍<br>will you be my Valentine ❤️</h1>
-  <button class="yes" onclick="go(2)">YES 💖</button>
+  <button class="yes" onclick="go(1)">YES 💖</button>
   <button class="no" id="noBtn">NO ❌</button>
 </div>
 
 <!-- SLIDE 2 -->
-<div class="slide center" id="slide2">
+<div class="slide center">
   <p>
     Sheetal,<br><br>
     aap meri life ka sabse pyaara hissa ho.<br><br>
     Aapke saath har din thoda zyada special lagta hai.<br><br>
-    Aaj Valentine’s Day hai,<br>
-    par main aapko har din choose karta hoon ❤️
+    Main aapko har din choose karta hoon ❤️
   </p>
-  <button class="yes" onclick="go(3)">Next ❤️</button>
+  <button class="yes" onclick="go(2)">Next ❤️</button>
 </div>
 
 <!-- SLIDE 3 -->
-<div class="slide photos" id="slide3">
+<div class="slide photos">
   <img src="photo1.jpg">
   <img src="photo2.jpg">
   <img src="photo3.jpg">
   <img src="photo4.jpg">
   <img src="photo5.jpg">
   <img src="photo6.jpg">
-  <button class="yes" onclick="go(4)">Next ❤️</button>
+  <button class="yes" onclick="go(3)">Next ❤️</button>
 </div>
 
 <!-- SLIDE 4 -->
-<div class="slide center" id="slide4">
+<div class="slide center">
   <h2>Happy Valentine’s Day ❤️</h2>
   <p>Main aapse sirf aaj nahi… hamesha pyaar karta rahunga.</p>
-  <button class="yes" onclick="go(5)">Always ❤️</button>
+  <button class="yes" onclick="go(4)">Always ❤️</button>
 </div>
 
 <!-- SLIDE 5 -->
-<div class="slide center" id="slide5">
+<div class="slide center">
   <canvas id="fireworks"></canvas>
   <h1 class="final-text">YOU ARE MINE NOW ❤️</h1>
   <img src="photo3.jpg" style="width:80%;max-width:320px;border-radius:20px;">
+</div>
+
 </div>
 
 <audio id="music">
@@ -142,14 +141,17 @@ button{
 </audio>
 
 <script>
+let current=0;
+const slider=document.getElementById("slider");
+
 function go(n){
-  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
-  document.getElementById('slide'+n).classList.add('active');
-  document.getElementById('music').play();
-  if(n===5) startFireworks();
+  current=n;
+  slider.style.transform=`translateX(-${current*100}vw)`;
+  document.getElementById("music").play();
+  if(current===4) startFireworks();
 }
 
-/* NO button run away */
+/* NO RUN AWAY */
 const noBtn=document.getElementById("noBtn");
 noBtn.addEventListener("mouseover",()=>{
   noBtn.style.transform=
